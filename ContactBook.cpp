@@ -1,6 +1,17 @@
-#include "ContactBook.h"
 #include <algorithm>
 #include <iostream>
+#include <string>
+
+#include "ContactBook.h"
+#include "File.h"
+
+ContactBook::~ContactBook()
+{
+	for (const auto& contact : contacts)
+	{
+		contact.~Contact();
+	}
+}
 
 void ContactBook::addContact(const Contact& contact)
 {
@@ -48,6 +59,7 @@ const std::vector<Contact>& ContactBook::getAllContacts() const
 
 void ContactBook::printAll()
 {
+	std::cout << "Contacts:\n---\n";
 	for (const auto& contact : contacts)
 	{
 		contact.print();
@@ -56,3 +68,28 @@ void ContactBook::printAll()
 }
 
 size_t ContactBook::size() const { return contacts.size(); }
+
+
+void ContactBook::export_contacts(const std::string& fileName) const
+{
+	if (contacts.empty())
+	{
+		std::cout << "You have no contacts to export\n";
+		return;
+	}
+
+	File outputFile(fileName);
+
+	std::string jsonData = "{\"contacts\":[";
+	outputFile.write(jsonData);
+	
+	for (const auto& contact : contacts)
+	{
+		outputFile.write(contact.export_data());
+		if (!(contacts.back() == contact))
+		{
+			outputFile.write(",");
+		}
+	}
+	outputFile.write("]}");
+}

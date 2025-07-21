@@ -21,11 +21,13 @@
   <ItemGroup>
     <ClCompile Include="ContactBook.cpp" />
     <ClCompile Include="Contact.cpp" />
+    <ClCompile Include="File.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContactBook.h" />
     <ClInclude Include="Contact.h" />
+    <ClInclude Include="File.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

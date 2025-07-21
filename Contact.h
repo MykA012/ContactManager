@@ -15,6 +15,8 @@ public:
 	void print() const;
 
 	bool operator ==(const Contact& other) const;
+	
+	std::string export_data() const;
 private:
 	std::string name;
 	std::string phoneNumber;

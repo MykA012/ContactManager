@@ -30,3 +30,13 @@ bool Contact::operator==(const Contact& other) const
 {
 	return name == other.name && phoneNumber == other.phoneNumber;
 }
+
+std::string Contact::export_data() const
+{
+	std::string jsonName, jsonPhoneNumber;
+	jsonName = "\"" + name + "\"";
+	jsonPhoneNumber = "\"" + phoneNumber + "\"";
+
+	std::string data = "{\"name\":" + jsonName + ",\"phoneNumber\":" + jsonPhoneNumber + "}";
+	return data;
+}
